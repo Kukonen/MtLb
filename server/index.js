@@ -1,3 +1,4 @@
+require('dotenv').config()
 express = require('express');
 
 const app = express();
@@ -11,6 +12,8 @@ const codeRoute = require('./routes/code.route');
 
 app.use(codeRoute);
 
-app.listen(3000, () => {
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => {
     console.log("Server started")
 })
