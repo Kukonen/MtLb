@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MtLb</string>
+
+    Toolbar:
+    <string name="login">Ваш аккаунт</string>
+    <string name="current">Текущий проект</string>
+    <string name="all">Все проекты</string>
+    <string name="todo">TODO</string>
+
+    All projects:
+    <string name="empty">Здесь пусто!</string>
+    <string name="empty2">У вас нет проектов…</string>
+
+    Authorization:
+    <string name="sign">Войти</string>
+    <string name="log_info">Авторизация</string>
+    <string name="log_txt">Ваш логин: </string>
+    <string name="pas_txt">Ваш пароль: </string>
+    <string name="sign_up">Нет аккаунта? Зарегистрируйтесь!</string>
+    <string name="continue_without_acc">Продолжить без аккаунта</string>
+    <string name="tg">Войти через Telegram</string>
+</resources>
