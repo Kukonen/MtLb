@@ -1,5 +1,6 @@
 require('dotenv').config()
-express = require('express');
+const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -14,6 +15,10 @@ const bot = require('./telegram/telegram');
 const codeRoute = require('./routes/code.route');
 
 app.use(codeRoute);
+
+mongoose.connect(process.env.MONGODB, () => {
+    console.log(`mongoose running`)
+});
 
 const PORT = process.env.PORT;
 
