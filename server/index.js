@@ -6,6 +6,9 @@ const app = express();
 app.use(express.json())
 app.use(express.static('files'));
 
+// telegram
+
+const bot = require('./telegram/telegram');
 
 // routes
 const codeRoute = require('./routes/code.route');

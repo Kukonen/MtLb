@@ -1,6 +1,6 @@
 class CodeController {
     async getCode(req, res) {
-        
+        const {user, code} = req.body;
     }
 }
 
