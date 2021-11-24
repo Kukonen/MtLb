@@ -9,9 +9,9 @@ const RequiredKey = (props) => {
     const [adminPassword, setAdminPassword] = useState('');
     const [error, setError] = useState(false);
 
-    const sendKey = (key) => {
-        axios.post('/auth', {
-            key
+    const sendKey = (password) => {
+        axios.post('/auth/login', {
+            password
         }).then(response => {
             localStorage.setItem('isLogin', 'yes');
             changeIsLoggin(true);

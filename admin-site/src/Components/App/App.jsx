@@ -7,49 +7,43 @@ import RequiredKey from '../RequiredKey/RequiredKey';
 const App = () => {
 
   useEffect(() => {
-    getQuesions();
+    getStatus();
   }, [])
 
-  localStorage.setItem('questions', JSON.stringify([{
-    id: 333,
-    user: 222,
-    message: "lorem text"
-  },
-  {
-    id: 222,
-    user: 333,
-    message: "question ftgyhjnk vygbhjnkml vghbjnk vygbhjn vyghbjnk vygbhujn vygbhjn ygbuhnj ygbhnj"
-  }]))
-
-  const [isLoggin, setIsLoggin] = useState(localStorage.getItem('isLogin') === 'yes' || false);
-
-  useEffect(() => {
-    if (isLoggin) {
-      getQuesions();
-    }
-  }, []);
+  const [isLoggin, setIsLoggin] = useState(null);
 
   const changeIsLoggin = (status) => {
     setIsLoggin(status);
-    if (isLoggin === "yes") {
+    if (isLoggin) {
       getQuesions();
     }
   }
 
   const getQuesions = async () => {
-    axios.get('/getuserquestion').then(response => {
-      localStorage.setItem('questions' , JSON.stringify(response.data.quesions));
+    axios.get('/questions/getuserquestions').then(response => {
+      localStorage.setItem('questions' , JSON.stringify(response.data));
     }).catch(e => {
       
+    })
+  }
+
+  const getStatus  = () => {
+    axios.get('auth/getuserstatus').then(response => {
+      setIsLoggin(true);
+      getQuesions();
+    }).catch(e => {
+      setIsLoggin(false);
     })
   }
 
   return (
     <div className="App">
       {
-        isLoggin ?
-          <Questions /> :
-          <RequiredKey changeIsLoggin={(status) => changeIsLoggin(status)} />
+        isLoggin === null ?
+          null :
+          isLoggin ?
+            <Questions /> :
+            <RequiredKey changeIsLoggin={(status) => changeIsLoggin(status)} />
       }
     </div>
   );

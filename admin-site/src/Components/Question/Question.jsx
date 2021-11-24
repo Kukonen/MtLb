@@ -8,10 +8,14 @@ const Question = (props) => {
 
     const [answer, setAnswer] = useState("");
 
-    const sendAnswer = (id, user, answer) => {
+    const sendAnswer = (id, user, message, answer) => {
+        if (answer === "") {
+            return;
+        }
         deleteQuestion(id);
-        axios.post('/sendanswer', {
+        axios.post('/questions/sendnswer', {
             id,
+            message,
             user,
             answer
         }).then(response => {
@@ -35,7 +39,7 @@ const Question = (props) => {
             ></textarea>
             <div
                 className="QuestionButton"
-                onClick={() => sendAnswer(id, user, answer)}
+                onClick={() => sendAnswer(id, user, message,answer)}
             >Отправить ответ</div>
         </div>
     )

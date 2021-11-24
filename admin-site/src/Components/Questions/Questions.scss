@@ -1,4 +1,30 @@
+$border-color: #d3d3d3;
+
 .Questions {
     display: flex;
     flex-direction: column;
+}
+
+.QuestionsHeadline {
+    margin-top: 50px;
+    font-size: 30px;
+    text-decoration: underline #5731f1;
+    text-align: center;
+}
+
+.QustionFindTextSection {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.QustionFindTextInput {
+    border: 1px solid $border-color;
+    font-size: 20px;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
+    &:focus {
+        border: 1px solid darken($border-color, 20%) ;
+    }
 }
