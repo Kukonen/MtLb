@@ -47,7 +47,6 @@ class AuthController {
 
             res.status(202).json();
         } else {
-            console.log("HERE2")
             res.status(400).json();
         }
     }
