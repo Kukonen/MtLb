@@ -1,23 +1,37 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './Questions.scss';
 import Question from '../Question/Question';
 
-const Questions = (props) => {
-    const { questions } = props;
+const Questions = () => {
 
-    const [questionsElements, setQuestionsElements] = useState(questions.map(question => {
+    const [questionsElements, setQuestionsElements] = 
+    useState(localStorage.getItem('questions') ? JSON.parse(localStorage.getItem('questions')).map(question => {
         return (
-            <Question id={question.id} user={question.user} message={question.message} deleteQuestion={id => deleteQuestion(id)}/>
+            <Question id={question.id} user={question.user} message={question.message} deleteQuestion={id => deleteQuestion(id)} key={question.id}/>
         )
-    }))
+    }) : [])
 
     const deleteQuestion = (id) => {
 
-        const newQuestionsElements = questionsElements.filter(question => question.id !== id);
+        const quesions = JSON.parse(localStorage.getItem('questions'));
 
-        setQuestionsElements(newQuestionsElements);
+        const newQuestions = quesions.map(question => {
+            return {
+                id: question.id,
+                user: question.user,
+                message: question.message
+            }
+        }).filter(quesion => quesion.id !== id);
+
+        localStorage.setItem('questions', JSON.stringify(newQuestions))
+
+        setQuestionsElements(localStorage.getItem('questions') ?JSON.parse( localStorage.getItem('questions')).map(question => {
+            return (
+                <Question id={question.id} user={question.user} message={question.message} deleteQuestion={id => deleteQuestion(id)} key={question.id}/>
+            )
+        }) : [])
     }
-    
+
     return (
         <div className="Questions">
             {

@@ -10,19 +10,19 @@ const Question = (props) => {
 
     const sendAnswer = (id, user, answer) => {
         deleteQuestion(id);
-        // axios.post('/sendanswer', {
-        //     id,
-        //     user,
-        //     answer
-        // }).then(response => {
-        //     deleteQuestion(id);
-        // }).catch(e => {
-        //     deleteQuestion(id);
-        // })
+        axios.post('/sendanswer', {
+            id,
+            user,
+            answer
+        }).then(response => {
+            deleteQuestion(id);
+        }).catch(e => {
+            deleteQuestion(id);
+        })
     }
 
     return (
-        <div className="Question" key={id}>
+        <div className="Question">
             <div className="QuestionMessage">{message}</div>
             <textarea 
                 className="QuestionAnswer" 

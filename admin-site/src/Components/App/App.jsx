@@ -6,18 +6,20 @@ import RequiredKey from '../RequiredKey/RequiredKey';
 
 const App = () => {
 
-  const [questions, setQuestions] = useState([
-    {
-      id: 333,
-      user: 222,
-      message: "lorem text"
-    },
-    {
-      id: 222,
-      user: 333,
-      message: "question ftgyhjnk vygbhjnkml vghbjnk vygbhjn vyghbjnk vygbhujn vygbhjn ygbuhnj ygbhnj"
-    }
-  ]);
+  useEffect(() => {
+    getQuesions();
+  }, [])
+
+  localStorage.setItem('questions', JSON.stringify([{
+    id: 333,
+    user: 222,
+    message: "lorem text"
+  },
+  {
+    id: 222,
+    user: 333,
+    message: "question ftgyhjnk vygbhjnkml vghbjnk vygbhjn vyghbjnk vygbhujn vygbhjn ygbuhnj ygbhnj"
+  }]))
 
   const [isLoggin, setIsLoggin] = useState(localStorage.getItem('isLogin') === 'yes' || false);
 
@@ -36,9 +38,9 @@ const App = () => {
 
   const getQuesions = async () => {
     axios.get('/getuserquestion').then(response => {
-      return setQuestions(response.data.quesions);
+      localStorage.setItem('questions' , JSON.stringify(response.data.quesions));
     }).catch(e => {
-      return setQuestions([]);
+      
     })
   }
 
@@ -46,7 +48,7 @@ const App = () => {
     <div className="App">
       {
         isLoggin ?
-          <Questions questions={questions}/> :
+          <Questions /> :
           <RequiredKey changeIsLoggin={(status) => changeIsLoggin(status)} />
       }
     </div>
