@@ -14,6 +14,10 @@ const QuestionSchema = new Schema({
     message: {
         type: String,
         required: true
+    },
+    answer: {
+        type: String,
+        required: false
     }
 })
 
